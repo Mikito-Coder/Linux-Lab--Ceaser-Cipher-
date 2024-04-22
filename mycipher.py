@@ -1,6 +1,6 @@
 import sys
 
-def caesar_cipher(offset):
+def caesar_cipher(shift):
     for line in sys.stdin:
         raw_text = line.strip().upper()
         encrypted_text = ""
@@ -10,7 +10,7 @@ def caesar_cipher(offset):
             # only allow chars and makes them uppercase
             if char.isalpha():
                 # Shift characters
-                shifted_position = (ord(char) - ord('A') + offset) % 26 + ord('A')
+                shifted_position = (ord(char) - ord('A') + shift) % 26 + ord('A')
                 encrypted_text += chr(shifted_position)
                 group_counter += 1
 
@@ -25,9 +25,9 @@ def caesar_cipher(offset):
 
         return encrypted_text.strip()
 
-# Retrieve the offset value from command line arguments
-offset = int(sys.argv[1])
-encrypted_message = caesar_cipher(offset)
+# Retrieve the shift value from command line arguments
+shift = int(sys.argv[1])
+encrypted_message = caesar_cipher(shift)
 
 # Display the encrypted text in blocks of ten lines, each line containing 60 characters
 position = 0
